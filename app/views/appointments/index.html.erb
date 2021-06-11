@@ -1,1 +1,29 @@
-<h1> Welcome </h1>
+<%= link_to "Create a Appointments", class: "btn btn-outline-primary mt-3"%>
+<div>
+    <h3 class="mt-5 mb-4">Appointments:</h3>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Starts At</th>
+            <th scope="col">Ends At</th>
+            <th scope="col">Patient ID</th>
+            <th scope="col">Doctor ID</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @appointments.each do |ap| %>
+            <tr>
+                <th scope="row"><%= ap.id %></th>
+                <td><%= ap.starts_at %></td>
+                <td><%= ap.ends_at %></td>
+                <td><%= ap.patient_id %></td>
+                <td><%= ap.doctor_id %></td>
+                <td><a href="">Edit</a> |
+                    <a href="">Delete</td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>

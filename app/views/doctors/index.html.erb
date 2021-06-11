@@ -1,0 +1,26 @@
+<div>
+    <h3 class="mt-5 mb-4">Doctors:</h3>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">CRM</th>
+            <th scope="col">UF (CRM)</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @doctors.each do |doc| %>
+            <tr>
+                <th scope="row"><%= doc.id %></th>
+                <td><%= doc.name %></td>
+                <td><%= doc.crm %></td>
+                <td><%= doc.crm_uf %></td>
+                <td><a href="">Edit</a> |
+                    <a href="">Delete</td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>

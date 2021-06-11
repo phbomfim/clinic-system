@@ -1,0 +1,26 @@
+<div>
+    <h3 class="mt-5 mb-4">Patients:</h3>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Birth date</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @patients.each do |pat| %>
+            <tr>
+                <th scope="row"><%= pat.id %></th>
+                <td><%= pat.name %></td>
+                <td><%= pat.birth_date %></td>
+                <td><%= pat.cpf %></td>
+                <td><a href="">Edit</a> |
+                    <a href="">Delete</td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>
