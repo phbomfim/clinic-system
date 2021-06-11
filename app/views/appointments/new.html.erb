@@ -15,12 +15,14 @@
 
     <div class="mb-3">
         <p>Patient</p>
-        <%= form.text_field :patient_id, class: "form-control"%>
+        <% patients_array = Patient.all.map { |patient| ["#{patient.id} - #{patient.name} - #{patient.cpf}"]} %>
+        <%= form.select :patient_id, options_for_select(patients_array), class: "form-control" %>
     </div>
 
     <div class="mb-3">
         <p>Doctor</p>
-        <%= form.text_field :doctor_id, class: "form-control"%>
+        <% doctors_array = Doctor.all.map { |doctor| ["#{doctor.id} - #{doctor.name} - #{doctor.crm}"]} %>
+        <%= form.select :doctor_id, options_for_select(doctors_array), class: "form-control" %>
     </div>
 
     <div class="mb-3">
