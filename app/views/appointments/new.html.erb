@@ -1,0 +1,30 @@
+<h1> New Appointment </h1>
+
+<%= form_with model: @appointment do |form| %>
+    <%= render "shared/form_errors", form: form %>
+
+    <div class="mb-3">
+        <p>Starts At</p>
+        <%= form.datetime_local_field :starts_at, class: "form-control", placeholder: "2021-06-11T00:00"%>
+    </div>
+
+    <div class="mb-3">
+        <p>Ends At</p>
+        <%= form.datetime_local_field :ends_at, class: "form-control", placeholder: "2021-06-11T00:30"%>
+    </div>
+
+    <div class="mb-3">
+        <p>Patient</p>
+        <%= form.text_field :patient_id, class: "form-control"%>
+    </div>
+
+    <div class="mb-3">
+        <p>Doctor</p>
+        <%= form.text_field :doctor_id, class: "form-control"%>
+    </div>
+
+    <div class="mb-3">
+        <%= form.submit %>
+        <%= link_to "Back", appointments_path , class: "btn" %>
+    </div>
+<% end %>
