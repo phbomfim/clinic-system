@@ -10,17 +10,27 @@ class PatientsController < ApplicationController
     def create
         @patient = Patient.new(patient_params)
         if @patient.save
-            redirect_to patients_path
+            redirect_to patients_path, notice: "Your patient has been created"
         else
             render :new
         end
     end
 
     def update
+        if @patient.update(patient_params)
+            redirect_to patients_path, notice: "Patient was updated successfully"
+        else
+            render :edit
+        end
     end
 
-    def delete
+    def destroy
+        @patient = Patient.find(params[:id])
+        @patient.destroy
+        redirect_to patients_path, notice: "Your patient has been deleted"
     end
+
+    
 
     private
 

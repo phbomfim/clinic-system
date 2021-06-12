@@ -19,7 +19,7 @@
                 <td><%= pat.birth_date %></td>
                 <td><%= pat.cpf %></td>
                 <td><a href="">Edit</a> |
-                    <a href="">Delete</td>
+                    <%= link_to "Delete", patient_path(pat), data: { confirm: "Are you sure?" }, :method => :delete %></td>
             </tr>
         <% end %>
     </tbody>
