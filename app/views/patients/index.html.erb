@@ -1,0 +1,27 @@
+<%= link_to "Create a Patient", new_patient_path, class: "btn btn-outline-primary mt-2"%>
+<div>
+    <h3 class="mt-5 mb-4">Patients:</h3>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Birth date</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @patients.each do |pat| %>
+            <tr>
+                <th scope="row"><%= pat.id %></th>
+                <td><%= pat.name %></td>
+                <td><%= pat.birth_date %></td>
+                <td><%= pat.cpf %></td>
+                <td><%= link_to "Edit", edit_patient_path(pat) %> |
+                    <%= link_to "Delete", patient_path(pat), data: { confirm: "Are you sure?" }, :method => :delete %></td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>

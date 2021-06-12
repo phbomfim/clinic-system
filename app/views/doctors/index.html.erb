@@ -1,0 +1,27 @@
+<%= link_to "Create a Doctor", new_doctor_path, class: "btn btn-outline-primary mt-2"%>
+<div>
+    <h3 class="mt-5 mb-4">Doctors:</h3>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">CRM</th>
+            <th scope="col">UF (CRM)</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @doctors.each do |doc| %>
+            <tr>
+                <th scope="row"><%= doc.id %></th>
+                <td><%= doc.name %></td>
+                <td><%= doc.crm %></td>
+                <td><%= doc.crm_uf %></td>
+                <td><%= link_to "Edit", edit_doctor_path(doc) %> |
+                    <%= link_to "Delete", doctor_path(doc), data: { confirm: "Are you sure?" }, :method => :delete %></td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>
