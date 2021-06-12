@@ -1,0 +1,25 @@
+<h1> Edit doctor </h1>
+
+<%= form_with model: @doctor do |form| %>
+    <%= render "shared/form_errors", form: form %>
+
+    <div class="mb-3">
+        <p>Name</p>
+        <%= form.text_field :name, class: "form-control", value: "#{@doctor.name}"%>
+    </div>
+
+    <div class="mb-3">
+        <p>CRM</p>
+        <%= form.text_field :crm, class: "form-control", value: "#{@doctor.crm}"%>
+    </div>
+
+    <div class="mb-3">
+        <p>UF CRM</p>
+        <%= form.text_field :crm_uf, class: "form-control", value: "#{@doctor.crm_uf}"%>
+    </div>
+
+    <div class="mb-3">
+        <%= form.submit %>
+        <%= link_to "Back", doctors_path , class: "btn" %>
+    </div>
+<% end %>

@@ -18,8 +18,8 @@
                 <td><%= doc.name %></td>
                 <td><%= doc.crm %></td>
                 <td><%= doc.crm_uf %></td>
-                <td><a href="">Edit</a> |
-                    <a href="">Delete</td>
+                <td><%= link_to "Edit", edit_doctor_path(doc) %> |
+                    <%= link_to "Delete", doctor_path(doc), data: { confirm: "Are you sure?" }, :method => :delete %></td>
             </tr>
         <% end %>
     </tbody>

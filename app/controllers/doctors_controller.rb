@@ -10,16 +10,29 @@ class DoctorsController < ApplicationController
     def create
         @doctor = Doctor.new(doctor_params)
         if @doctor.save
-            redirect_to doctors_path
+            redirect_to doctors_path, "Your doctor has been created"
         else
             render :new
         end
     end
 
-    def update
+    def edit
+        @doctor = Doctor.find(params[:id])
     end
 
-    def delete
+    def update
+        @doctor = Doctor.find(params[:id])
+        if @doctor.update(doctor_params)
+            redirect_to doctors_path, notice: "Doctor was updated successfully"
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        @doctor = Doctor.find(params[:id])
+        @doctor.destroy
+        redirect_to doctors_path, notice: "Your doctor has been deleted"
     end
 
     private
