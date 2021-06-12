@@ -20,8 +20,8 @@
                 <td><%= ap.ends_at %></td>
                 <td><%= ap.patient_id %></td>
                 <td><%= ap.doctor_id %></td>
-                <td><a href="">Edit</a> |
-                    <a href="">Delete</td>
+                <td><%= link_to "Edit", edit_appointment_path(ap) %> |
+                    <%= link_to "Delete", appointment_path(ap), data: { confirm: "Are you sure?" }, :method => :delete %></td>
             </tr>
         <% end %>
     </tbody>
