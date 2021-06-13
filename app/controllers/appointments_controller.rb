@@ -12,7 +12,7 @@ class AppointmentsController < ApplicationController
         if @appointment.save
             redirect_to appointments_path, notice: "Appointment has been created"
         else
-            render :new
+            render :new, alert: "#{@appointment.errors.full_messages}"
         end
     end
 
