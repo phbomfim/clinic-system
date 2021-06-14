@@ -17,7 +17,7 @@ class Doctor < ApplicationRecord
 
         def cannot_delete_with_appointments
             has_appointment = Appointment.find_by(doctor_id: self.id)
-            errors.add(:base, 'It is not possible to delete a doctor with an appointment.') if !has_appointment.nil?
+            errors.add(:base, 'It is not possible to delete a doctor with appointment(s).') if !has_appointment.nil?
         end
 
         def update_CRM_with_UF

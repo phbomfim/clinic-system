@@ -31,8 +31,12 @@ class PatientsController < ApplicationController
 
     def destroy
         @patient = Patient.find(params[:id])
-        @patient.destroy
-        redirect_to patients_path, notice: "Your patient has been deleted"
+        
+        if @patient.destroy
+            redirect_to patients_path, notice: "Your patient has been deleted"
+        else
+            redirect_to patients_path, alert: "#{@patient.errors.full_messages}"
+        end
     end
 
     private
