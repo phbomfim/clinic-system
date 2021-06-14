@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :patients
   resources :appointments
 
-  root to: 'dashboards#index'
+  post "show", to: "dashboards#show"
+
+  root to: 'dashboards#show'
 
 end
