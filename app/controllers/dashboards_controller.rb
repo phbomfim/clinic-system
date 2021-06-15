@@ -1,14 +1,18 @@
 class DashboardsController < ApplicationController
+    protect_from_forgery except: :show
 
     def show 
         @doctors = Doctor.all
-        
+
         if params[:filter].nil? || params[:filter] == "all"
-            @patients = Patient.all 
-            @appointments = Appointment.all
+            @patients = Patient.count
+            @appointments = Appointment.select{|ap| ap.isFinished }
+            @appointments = @appointments.count
         else
             @appointments = Appointment.where(doctor_id: params[:filter])
-            @patients = Patient.all
+            @patients = @appointments.distinct.count(:patient_id)
+            @appointments = @appointments.select{|ap| ap.isFinished }
+            @appointments = @appointments.count
         end
     end
 
