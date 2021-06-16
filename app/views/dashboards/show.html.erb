@@ -11,13 +11,19 @@
             </div>
             <% end %>
         </div>
-        <div class="col-4 text-center" style="background: #0dcaf0; border-radius: 5%">
-            <h3>Appointments</h3>
-            <h4><%= @appointments %></h4>
-        </div>
-        <div class="col-4 text-center " style="background: #ffc107; border-radius: 5%;">
-            <h3>Patients</h3>
-            <h4><%= @patients %></h4>
-        </div>
     </div>
+    <table class="table table-striped">
+        <thead>
+            <tr class="col-4 text-center">
+                <th scope="col">Appointments</th>
+                <th scope="col">Patients</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="col-4 text-center">
+                <th scope="row"><%= @appointments %></th>
+                <th scope="row"><%= @patients %></th>
+            </tr>
+        </tbody>
+    </table>
 </div>
