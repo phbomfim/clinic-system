@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+ .btn-header {
+     text-decoration: none;
+ }
+
+ .btn-header:hover {
+     text-decoration: underline;
+ }
+
+
+.select-medic
+{
+    font-size: 1.3em;
+}

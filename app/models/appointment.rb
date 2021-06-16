@@ -13,12 +13,8 @@ class Appointment < ApplicationRecord
   end
 
   # Check if the appointment has been completed
-  def isFinished
-    if self.ends_at < Time.now
-      return  true
-    else
-      return false
-    end
+  def isFinished?
+    self.ends_at < Time.now
   end
 
   private
@@ -46,11 +42,11 @@ class Appointment < ApplicationRecord
       starts = self.starts_at.strftime('%H:%M')
       ends = self.ends_at.strftime('%H:%M')
       if starts < '09:00'
-        errors.add(:base, "MUITO CEDO: #{starts}")
+        errors.add(:base, "The clinic does not work at this time.")
       elsif ('11:30'..'12:59').cover?(starts)
-        errors.add(:base, "ALMOÇO: #{starts}")
+        errors.add(:base, "The clinic does not work at this time.")
       elsif ('17:31'..'23:59').cover?(starts)
-        errors.add(:base, "MUITO TARDE: #{starts}")
+        errors.add(:base, "The clinic does not work at this time.")
       end
     end
 end

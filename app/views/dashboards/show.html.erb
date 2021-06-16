@@ -1,25 +1,23 @@
-<div>
-    <h3 class="mt-5 mb-3">Filtro:</h3>
-    <%= form_with url: 'show' do |form| %>
-        <div class="mb-3">
-            <% doctors_array = @doctors.map { |doctor| ["#{doctor.name} - #{doctor.crm}", "#{doctor.id}"]} %>
-            <% doctors_array.insert(0, ["Todoso os médicos (#{doctors_array.size})", "all"])  %>
-            <%= form.select :filter, options_for_select(doctors_array), class: "form-control" %>
-            <%= form.submit "Aplicar" %>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-12 text-center mb-4">
+            <h3 class="mt-5 mb-4">Filter: <%= @doctor %></h3>
+            <%= form_with url: 'show' do |form| %>
+            <div class="mb-3">
+                <% doctors_array = @doctors.map { |doctor| ["#{doctor.name} - #{doctor.crm}", "#{doctor.id}"]} %>
+                <% doctors_array.insert(0, ["All doctors (#{doctors_array.size})", "all"])  %>
+                <%= form.select :filter, options_for_select(doctors_array), class: "form-control select-medic" %>
+                <%= form.submit "Aplicar" , class: "btn btn-primary text-center mx-auto mt-3", style:"display: block; font-size: 1.2em;" %>
+            </div>
+            <% end %>
         </div>
-    <% end %>
-    <table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Appointments</th>
-            <th scope="col">Patients</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row"><%= @appointments %></th>
-            <th scope="row"><%= @patients %></th>
-        </tr>
-    </tbody>
-    </table>
+        <div class="col-4 text-center" style="background: #0dcaf0; border-radius: 5%">
+            <h3>Appointments</h3>
+            <h4><%= @appointments %></h4>
+        </div>
+        <div class="col-4 text-center " style="background: #ffc107; border-radius: 5%;">
+            <h3>Patients</h3>
+            <h4><%= @patients %></h4>
+        </div>
+    </div>
 </div>
