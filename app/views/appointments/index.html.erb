@@ -16,8 +16,8 @@
         <% @appointments.each do |ap| %>
             <tr>
                 <th scope="row"><%= ap.id %></th>
-                <td><%= ap.starts_at %></td>
-                <td><%= ap.ends_at %></td>
+                <td><%= l ap.starts_at %></td>
+                <td><%= l ap.ends_at %></td>
                 <td><%= ap.patient_id %></td>
                 <td><%= ap.doctor_id %></td>
                 <td><%= link_to "Edit", edit_appointment_path(ap) %> |

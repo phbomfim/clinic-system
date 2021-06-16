@@ -16,7 +16,7 @@
             <tr>
                 <th scope="row"><%= pat.id %></th>
                 <td><%= pat.name %></td>
-                <td><%= pat.birth_date %></td>
+                <td><%= pat.birth_date.strftime('%d/%m/%Y') %></td>
                 <td><%= pat.cpf %></td>
                 <td><%= link_to "Edit", edit_patient_path(pat) %> |
                     <%= link_to "Delete", patient_path(pat), data: { confirm: "Are you sure?" }, :method => :delete %></td>
@@ -25,3 +25,4 @@
     </tbody>
     </table>
 </div>
+<% console %>
