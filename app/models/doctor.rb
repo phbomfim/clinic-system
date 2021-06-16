@@ -2,6 +2,7 @@ class Doctor < ApplicationRecord
 
     validates :name, :crm, :crm_uf, presence: true # All attributes are required.
     validates :crm, uniqueness: true # The system don't agree patients with same CRM
+    validates :name, :crm_uf, format: {with: /[a-zA-Z]/}
 
     # Falta verificar se existe doctor em alguma consulta com ends_at antes do datetime atual
     before_destroy do 

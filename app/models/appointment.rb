@@ -9,6 +9,7 @@ class Appointment < ApplicationRecord
     defineEndTime
     inBusinessHours
     anotherAtThisTime
+    startsAtIsValid
     throw(:abort) if errors.present?
   end
 
@@ -49,4 +50,8 @@ class Appointment < ApplicationRecord
         errors.add(:base, "The clinic does not work at this time.")
       end
     end
+
+    def startsAtIsValid
+      errors.add(:base, 'This date/time has passed.') if self.starts_at < Time.now
+  end
 end
