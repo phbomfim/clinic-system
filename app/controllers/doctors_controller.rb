@@ -10,7 +10,7 @@ class DoctorsController < ApplicationController
   def create
     @doctor = Doctor.new(doctor_params)
     if @doctor.save
-      redirect_to doctors_path, notice: "Doctor has been created"
+      redirect_to doctors_path, notice: 'Doctor has been created'
     else
       render :new
     end
@@ -23,7 +23,7 @@ class DoctorsController < ApplicationController
   def update
     @doctor = Doctor.find(params[:id])
     if @doctor.update(doctor_params)
-      redirect_to doctors_path, notice: "Doctor was updated successfully"
+      redirect_to doctors_path, notice: 'Doctor was updated successfully'
     else
       render :edit
     end
@@ -32,9 +32,9 @@ class DoctorsController < ApplicationController
   def destroy
     @doctor = Doctor.find(params[:id])
     if @doctor.destroy
-      redirect_to doctors_path, notice: "Doctor has been deleted"
+      redirect_to doctors_path, notice: 'Doctor has been deleted'
     else
-      redirect_to doctors_path, alert: "#{@doctor.errors.full_messages}"
+      redirect_to doctors_path, alert: @doctor.errors.full_messages.to_s
     end
   end
 

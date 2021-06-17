@@ -7,25 +7,25 @@ context 'creating doctor' do
     fill_in 'doctor[crm]', with: '1234X'
     fill_in 'doctor[crm_uf]', with: 'AM'
     click_button 'Create Doctor'
-    expect(page).to have_content "Doctor has been created"
+    expect(page).to have_content 'Doctor has been created'
   end
 
   scenario 'invalid crm_uf' do
     visit new_doctor_path
     fill_in 'doctor[name]', with: 'User Test'
-    fill_in 'doctor[crm]', with: 12345
+    fill_in 'doctor[crm]', with: 12_345
     fill_in 'doctor[crm_uf]', with: 1
     click_button 'Create Doctor'
-    expect(page).to have_content "Crm uf is invalid"
+    expect(page).to have_content 'Crm uf is invalid'
   end
 
   scenario 'invalid name' do
     visit new_doctor_path
-    fill_in 'doctor[name]', with: 1231234
-    fill_in 'doctor[crm]', with: 12345
+    fill_in 'doctor[name]', with: 1_231_234
+    fill_in 'doctor[crm]', with: 12_345
     fill_in 'doctor[crm_uf]', with: 'AM'
     click_button 'Create Doctor'
-    expect(page).to have_content "Name is invalid"
+    expect(page).to have_content 'Name is invalid'
   end
 end
 
@@ -38,21 +38,21 @@ context 'editing doctor' do
     visit 'doctors/1/edit'
     fill_in 'doctor[name]', with: 'User Test'
     click_button 'Update Doctor'
-    expect(page).to have_content "User Test "
+    expect(page).to have_content 'User Test '
   end
 
   scenario 'invalid crm_uf' do
     visit 'doctors/1/edit'
     fill_in 'doctor[crm_uf]', with: 1
     click_button 'Update Doctor'
-    expect(page).to have_content "Crm uf is invalid"
+    expect(page).to have_content 'Crm uf is invalid'
   end
 
   scenario 'invalid name' do
     visit 'doctors/1/edit'
-    fill_in 'doctor[name]', with: 1231234
+    fill_in 'doctor[name]', with: 1_231_234
     click_button 'Update Doctor'
-    expect(page).to have_content "Name is invalid"
+    expect(page).to have_content 'Name is invalid'
   end
 
   scenario 'crm already exists' do
@@ -60,7 +60,7 @@ context 'editing doctor' do
     visit 'doctors/2/edit'
     fill_in 'doctor[crm]', with: '1234X'
     click_button 'Update Doctor'
-    expect(page).to have_content "Crm has already been taken"
+    expect(page).to have_content 'Crm has already been taken'
   end
 end
 

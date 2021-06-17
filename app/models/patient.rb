@@ -19,16 +19,16 @@ class Patient < ApplicationRecord
   private
 
   def formatCPF
-    numero = CPF.new(self.cpf)
+    numero = CPF.new(cpf)
     self.cpf = numero.formatted
   end
 
   def cannot_delete_with_appointments
-    has_appointment = Appointment.find_by(patient_id: self.id)
-    errors.add(:base, 'It is not possible to delete a patient with appointment(s).') if !has_appointment.nil?
+    has_appointment = Appointment.find_by(patient_id: id)
+    errors.add(:base, 'It is not possible to delete a patient with appointment(s).') unless has_appointment.nil?
   end
 
   def birthDateIsValid
-    errors.add(:base, 'Invalid birthday.') if self.birth_date > Date.today
+    errors.add(:base, 'Invalid birthday.') if birth_date > Date.today
   end
 end

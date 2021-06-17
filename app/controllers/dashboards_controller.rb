@@ -4,18 +4,17 @@ class DashboardsController < ApplicationController
   def show
     @doctors = Doctor.all
 
-    if params[:filter].nil? || params[:filter] == "all"
-      @doctor = "All doctors"
+    if params[:filter].nil? || params[:filter] == 'all'
+      @doctor = 'All doctors'
       @patients = Patient.count
       @appointments = Appointment.select { |ap| ap.isFinished? }
-      @appointments = @appointments.count
     else
       @doctor = Doctor.find(params[:filter]).name
       @appointments = Appointment.where(doctor_id: params[:filter])
       @patients = @appointments.distinct.count(:patient_id)
       @appointments = @appointments.select { |ap| ap.isFinished? }
-      @appointments = @appointments.count
     end
+    @appointments = @appointments.count
   end
 
   private

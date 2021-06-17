@@ -10,9 +10,9 @@ class AppointmentsController < ApplicationController
   def create
     @appointment = Appointment.new(appointment_params)
     if @appointment.save
-      redirect_to appointments_path, notice: "Appointment has been created"
+      redirect_to appointments_path, notice: 'Appointment has been created'
     else
-      render :new, alert: "#{@appointment.errors.full_messages}"
+      render :new, alert: @appointment.errors.full_messages.to_s
     end
   end
 
@@ -23,7 +23,7 @@ class AppointmentsController < ApplicationController
   def update
     @appointment = Appointment.find(params[:id])
     if @appointment.update(appointment_params)
-      redirect_to appointments_path, notice: "Appointment was updated successfully"
+      redirect_to appointments_path, notice: 'Appointment was updated successfully'
     else
       render :edit
     end
@@ -32,7 +32,7 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment = Appointment.find(params[:id])
     @appointment.destroy
-    redirect_to appointments_path, notice: "Your appointment has been deleted"
+    redirect_to appointments_path, notice: 'Your appointment has been deleted'
   end
 
   private

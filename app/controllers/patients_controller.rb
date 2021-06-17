@@ -10,9 +10,9 @@ class PatientsController < ApplicationController
   def create
     @patient = Patient.new(patient_params)
     if @patient.save
-      redirect_to patients_path, notice: "Patient has been created"
+      redirect_to patients_path, notice: 'Patient has been created'
     else
-      render :new, alert: "#{@patient.errors.full_messages}"
+      render :new, alert: @patient.errors.full_messages.to_s
     end
   end
 
@@ -23,7 +23,7 @@ class PatientsController < ApplicationController
   def update
     @patient = Patient.find(params[:id])
     if @patient.update(patient_params)
-      redirect_to patients_path, notice: "Patient was updated successfully"
+      redirect_to patients_path, notice: 'Patient was updated successfully'
     else
       render :edit
     end
@@ -33,9 +33,9 @@ class PatientsController < ApplicationController
     @patient = Patient.find(params[:id])
 
     if @patient.destroy
-      redirect_to patients_path, notice: "Patient has been deleted"
+      redirect_to patients_path, notice: 'Patient has been deleted'
     else
-      redirect_to patients_path, alert: "#{@patient.errors.full_messages}"
+      redirect_to patients_path, alert: @patient.errors.full_messages.to_s
     end
   end
 
