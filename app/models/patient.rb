@@ -24,12 +24,13 @@ class Patient < ApplicationRecord
     self.cpf = numero.formatted
   end
 
-  # Verify if this doctor have a appointment
+  # Check if the patient has an appointment
   def cannot_delete_with_appointments
     has_appointment = Appointment.find_by(patient_id: id)
     errors.add(:base, 'It is not possible to delete a patient with appointment(s).') unless has_appointment.nil?
   end
 
+  # Check if the birth date is in the past
   def birthDateIsValid
     errors.add(:base, 'Invalid birthday.') if birth_date > Date.today
   end
