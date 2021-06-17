@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2021_06_11_152152) do
-
   create_table "appointments", force: :cascade do |t|
     t.datetime "starts_at"
     t.datetime "ends_at"

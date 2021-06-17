@@ -20,38 +20,38 @@ class Appointment < ApplicationRecord
 
   private
 
-    # Use starts_at + 30 minutes define ends_at
-    def defineEndTime
-      self.ends_at = self.starts_at + 30.minutes
-    end
+  # Use starts_at + 30 minutes define ends_at
+  def defineEndTime
+    self.ends_at = self.starts_at + 30.minutes
+  end
 
-    # Check if exists another appointment at this time
-    def anotherAtThisTime 
-      Appointment.all.each do |other|
-        # A B A B
-        if other.starts_at < self.ends_at && other.ends_at > self.ends_at && self != other
-          errors.add(:base, 'Exists another appointment at this interval.')
-        # B A B A
-        elsif other.starts_at < self.starts_at && other.ends_at > self.starts_at && self != other
-          errors.add(:base, 'Exists another appointment at this interval.')
-        end
+  # Check if exists another appointment at this time
+  def anotherAtThisTime
+    Appointment.all.each do |other|
+      # A B A B
+      if other.starts_at < self.ends_at && other.ends_at > self.ends_at && self != other
+        errors.add(:base, 'Exists another appointment at this interval.')
+      # B A B A
+      elsif other.starts_at < self.starts_at && other.ends_at > self.starts_at && self != other
+        errors.add(:base, 'Exists another appointment at this interval.')
       end
     end
+  end
 
-    # Check if the appointment is in the business hours
-    def inBusinessHours
-      starts = self.starts_at.strftime('%H:%M')
-      ends = self.ends_at.strftime('%H:%M')
-      if starts < '09:00'
-        errors.add(:base, "The clinic does not work at this time.")
-      elsif ('11:30'..'12:59').cover?(starts)
-        errors.add(:base, "The clinic does not work at this time.")
-      elsif ('17:31'..'23:59').cover?(starts)
-        errors.add(:base, "The clinic does not work at this time.")
-      end
+  # Check if the appointment is in the business hours
+  def inBusinessHours
+    starts = self.starts_at.strftime('%H:%M')
+    ends = self.ends_at.strftime('%H:%M')
+    if starts < '09:00'
+      errors.add(:base, "The clinic does not work at this time.")
+    elsif ('11:30'..'12:59').cover?(starts)
+      errors.add(:base, "The clinic does not work at this time.")
+    elsif ('17:31'..'23:59').cover?(starts)
+      errors.add(:base, "The clinic does not work at this time.")
     end
+  end
 
-    def startsAtIsValid
-      errors.add(:base, 'This date/time has passed.') if self.starts_at < Time.now
+  def startsAtIsValid
+    errors.add(:base, 'This date/time has passed.') if self.starts_at < Time.now
   end
 end

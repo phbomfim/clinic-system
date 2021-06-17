@@ -1,71 +1,70 @@
 require 'rails_helper'
 
 context 'creating doctor' do
-    scenario 'sucess' do
-        visit new_doctor_path
-        fill_in 'doctor[name]', with: 'User Test'
-        fill_in 'doctor[crm]', with: '1234X'
-        fill_in 'doctor[crm_uf]', with: 'AM'
-        click_button 'Create Doctor'
-        expect(page).to have_content "Doctor has been created"
-    end
+  scenario 'sucess' do
+    visit new_doctor_path
+    fill_in 'doctor[name]', with: 'User Test'
+    fill_in 'doctor[crm]', with: '1234X'
+    fill_in 'doctor[crm_uf]', with: 'AM'
+    click_button 'Create Doctor'
+    expect(page).to have_content "Doctor has been created"
+  end
 
-    scenario 'invalid crm_uf' do
-        visit new_doctor_path
-        fill_in 'doctor[name]', with: 'User Test'
-        fill_in 'doctor[crm]', with: 12345
-        fill_in 'doctor[crm_uf]', with: 1
-        click_button 'Create Doctor'
-        expect(page).to have_content "Crm uf is invalid"
-    end
+  scenario 'invalid crm_uf' do
+    visit new_doctor_path
+    fill_in 'doctor[name]', with: 'User Test'
+    fill_in 'doctor[crm]', with: 12345
+    fill_in 'doctor[crm_uf]', with: 1
+    click_button 'Create Doctor'
+    expect(page).to have_content "Crm uf is invalid"
+  end
 
-    scenario 'invalid name' do
-        visit new_doctor_path
-        fill_in 'doctor[name]', with: 1231234
-        fill_in 'doctor[crm]', with: 12345
-        fill_in 'doctor[crm_uf]', with: 'AM'
-        click_button 'Create Doctor'
-        expect(page).to have_content "Name is invalid"
-    end
+  scenario 'invalid name' do
+    visit new_doctor_path
+    fill_in 'doctor[name]', with: 1231234
+    fill_in 'doctor[crm]', with: 12345
+    fill_in 'doctor[crm_uf]', with: 'AM'
+    click_button 'Create Doctor'
+    expect(page).to have_content "Name is invalid"
+  end
 end
 
 context 'editing doctor' do
+  before do
+    Doctor.create(name: 'User Old', crm: '1234X', crm_uf: 'AM')
+  end
 
-    before do
-       Doctor.create( name: 'User Old', crm: '1234X', crm_uf: 'AM')
-    end
+  scenario 'sucess' do
+    visit 'doctors/1/edit'
+    fill_in 'doctor[name]', with: 'User Test'
+    click_button 'Update Doctor'
+    expect(page).to have_content "User Test "
+  end
 
-    scenario 'sucess' do
-        visit 'doctors/1/edit'
-        fill_in 'doctor[name]', with: 'User Test'
-        click_button 'Update Doctor'
-        expect(page).to have_content "User Test "
-    end
+  scenario 'invalid crm_uf' do
+    visit 'doctors/1/edit'
+    fill_in 'doctor[crm_uf]', with: 1
+    click_button 'Update Doctor'
+    expect(page).to have_content "Crm uf is invalid"
+  end
 
-    scenario 'invalid crm_uf' do
-        visit 'doctors/1/edit'
-        fill_in 'doctor[crm_uf]', with: 1
-        click_button 'Update Doctor'
-        expect(page).to have_content "Crm uf is invalid"
-    end
+  scenario 'invalid name' do
+    visit 'doctors/1/edit'
+    fill_in 'doctor[name]', with: 1231234
+    click_button 'Update Doctor'
+    expect(page).to have_content "Name is invalid"
+  end
 
-    scenario 'invalid name' do
-        visit 'doctors/1/edit'
-        fill_in 'doctor[name]', with: 1231234
-        click_button 'Update Doctor'
-        expect(page).to have_content "Name is invalid"
-    end
-
-    scenario 'crm already exists' do
-        Doctor.create( name: 'User Old', crm: '1234X1', crm_uf: 'AM')
-        visit 'doctors/2/edit'
-        fill_in 'doctor[crm]', with: '1234X'
-        click_button 'Update Doctor'
-        expect(page).to have_content "Crm has already been taken"
-    end
+  scenario 'crm already exists' do
+    Doctor.create(name: 'User Old', crm: '1234X1', crm_uf: 'AM')
+    visit 'doctors/2/edit'
+    fill_in 'doctor[crm]', with: '1234X'
+    click_button 'Update Doctor'
+    expect(page).to have_content "Crm has already been taken"
+  end
 end
 
-#context 'deleting a doctor' do
+# context 'deleting a doctor' do
 #    before do
 #        Doctor.create( name: 'User Old', crm: '1234X', crm_uf: 'AM')
 #        #Patient.create( name: 'User Old', birth_date: '08/06/2021', cpf: '859.958.465-07')
@@ -79,6 +78,6 @@ end
 #        accept_confirm do
 #            click_on 'Delete'
 #          end
-#        expect(page).to have_content "Doctor has been deleted" 
+#        expect(page).to have_content "Doctor has been deleted"
 #    end
-#end
+# end

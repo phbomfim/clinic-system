@@ -22,7 +22,6 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-
 # Gems to validate CPF with ActiveRecord
 gem 'cpf_cnpj'
 gem 'validators'

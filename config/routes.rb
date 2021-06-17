@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   resources :doctors
   resources :patients
   resources :appointments
@@ -8,5 +7,4 @@ Rails.application.routes.draw do
   post "show", to: "dashboards#show"
 
   root to: 'dashboards#show'
-
 end
