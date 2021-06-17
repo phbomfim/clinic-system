@@ -3,7 +3,6 @@ class Doctor < ApplicationRecord
   validates :crm, uniqueness: true # The system don't agree patients with same CRM
   validates :name, :crm_uf, format: { with: /[a-zA-Z]/ }
 
-  # Falta verificar se existe doctor em alguma consulta com ends_at antes do datetime atual
   before_destroy do
     cannot_delete_with_appointments
     throw(:abort) if errors.present?
@@ -15,11 +14,13 @@ class Doctor < ApplicationRecord
 
   private
 
+  # Check if the patient has an appointment
   def cannot_delete_with_appointments
     has_appointment = Appointment.find_by(doctor_id: id)
     errors.add(:base, 'It is not possible to delete a doctor with appointment(s).') unless has_appointment.nil?
   end
 
+  # Add UF to CRM
   def update_CRM_with_UF
     self.crm = crm + crm_uf
   end

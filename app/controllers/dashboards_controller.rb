@@ -4,6 +4,7 @@ class DashboardsController < ApplicationController
   def show
     @doctors = Doctor.all
 
+    # Check the filter status
     if params[:filter].nil? || params[:filter] == 'all'
       @doctor = 'All doctors'
       @patients = Patient.count

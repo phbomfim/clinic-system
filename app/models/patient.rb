@@ -18,11 +18,13 @@ class Patient < ApplicationRecord
 
   private
 
+  # If the user add CPF without symbols (. and -)
   def formatCPF
     numero = CPF.new(cpf)
     self.cpf = numero.formatted
   end
 
+  # Verify if this doctor have a appointment
   def cannot_delete_with_appointments
     has_appointment = Appointment.find_by(patient_id: id)
     errors.add(:base, 'It is not possible to delete a patient with appointment(s).') unless has_appointment.nil?
