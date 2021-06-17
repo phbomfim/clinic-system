@@ -7,7 +7,7 @@
                 <% doctors_array = @doctors.map { |doctor| ["#{doctor.name} - #{doctor.crm}", "#{doctor.id}"]} %>
                 <% doctors_array.insert(0, ["All doctors (#{doctors_array.size})", "all"])  %>
                 <%= form.select :filter, options_for_select(doctors_array), class: "form-control select-medic" %>
-                <%= form.submit "Aplicar" , class: "btn btn-primary text-center mx-auto mt-3", style:"display: block; font-size: 1.2em;" %>
+                <%= form.submit "Apply" , class: "btn btn-primary text-center mx-auto mt-3", style:"display: block; font-size: 1.2em;" %>
             </div>
             <% end %>
         </div>
