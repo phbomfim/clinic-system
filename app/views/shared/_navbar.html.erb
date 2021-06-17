@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container">
+    <%= link_to "Clinic System", root_path, class: "navbar-brand text-info fw-bold fs-2" %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
+      <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+      </ul>
+      <ul class="navbar-nav">
+        <%= link_to "Doctors", doctors_path , class: "m-3 h4 btn-header text-info  "%>
+        <%= link_to "Patients", patients_path , class: "m-3 h4 btn-header text-info  "%>
+        <%= link_to "Appointments", appointments_path , class: "m-3 h4 btn-header text-info  "%>
+      </ul>
+    </div>
+  </div>
+</nav>

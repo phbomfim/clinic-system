@@ -1,0 +1,31 @@
+<div class="row mt-5 mb-3">
+    <div class="col-md-6">
+        <h3 class="">New appointments</h3>
+    </div>
+</div>
+
+<%= form_with model: @appointment do |form| %>
+    <%= render "shared/form_errors", form: form %>
+
+    <div class="mb-3">
+        <p>Starts At</p>
+        <%= form.datetime_local_field :starts_at, class: "form-control",  value: Time.now %>
+    </div>
+
+    <div class="mb-3">
+        <p>Patient</p>
+        <% patients_array = Patient.all.map { |patient| ["#{patient.id} - #{patient.name} - #{patient.cpf}"]} %>
+        <%= form.select :patient_id, options_for_select(patients_array), class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <p>Doctor</p>
+        <% doctors_array = Doctor.all.map { |doctor| ["#{doctor.id} - #{doctor.name} - #{doctor.crm}"]} %>
+        <%= form.select :doctor_id, options_for_select(doctors_array), class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.submit %>
+        <%= link_to "Back", appointments_path , class: "btn" %>
+    </div>
+<% end %>

@@ -1,0 +1,31 @@
+<h1> Edit Appointment </h1>
+
+<%= form_with model: @appointment do |form| %>
+    <%= render "shared/form_errors", form: form %>
+
+    <div class="mb-3">
+        <p>Starts At</p>
+        <%= form.datetime_local_field :starts_at, class: "form-control", value: @appointment.starts_at %>
+    </div>
+
+    <div class="mb-3">
+        <p>Patient</p>
+        <% selected_patient = Patient.find(@appointment.patient_id) %>
+        <% patients_array = Patient.all.map { |patient| ["#{patient.id} - #{patient.name} - #{patient.cpf}"]} %>
+        <% patients_array.insert(0, ["#{selected_patient.id} - #{selected_patient.name} - #{selected_patient.cpf}", selected_patient.id])  %>
+        <%= form.select :patient_id, options_for_select(patients_array), class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <p>Doctor</p>
+        <% selected_doctor = Doctor.find(@appointment.doctor_id) %>
+        <% doctors_array = Doctor.all.map { |doctor| ["#{doctor.id} - #{doctor.name} - #{doctor.crm}"]} %>
+        <% doctors_array.insert(0, ["#{selected_doctor.id} - #{selected_doctor.name} - #{selected_doctor.crm}", selected_doctor.id])  %>
+        <%= form.select :doctor_id, options_for_select(doctors_array), class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.submit %>
+        <%= link_to "Back", appointments_path , class: "btn" %>
+    </div>
+<% end %>
